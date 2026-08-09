@@ -263,36 +263,36 @@
 
         <div class="facility-carousel-wrapper">
             <div class="facility-track" id="facilityTrack">
+
+                {{-- 1. Area Latihan Luas: lantai gym luas dengan berbagai alat beban bebas --}}
                 <div class="facility-card">
-                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80" alt="Area Latihan Luas" loading="lazy">
+                    <img src="{{ asset('assets/img/Gym Area.jpg') }}" alt="Area Latihan Luas" loading="lazy">
                     <div class="facility-card-overlay"></div>
                     <div class="facility-card-name noto-sans-facility-desc">Area Latihan Luas</div>
                 </div>
+
+                {{-- 2. Alat Gym Lengkap: berbagai mesin gym modern (cable machine, smith machine, dll) --}}
                 <div class="facility-card">
-                    <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80" alt="Alat Gym Lengkap" loading="lazy">
+                    <img src="{{ asset('assets/img/Gym Equip.jpg') }}" alt="Alat Gym Lengkap" loading="lazy">
                     <div class="facility-card-overlay"></div>
                     <div class="facility-card-name noto-sans-facility-desc">Alat Gym Lengkap</div>
                 </div>
+
+
+                {{-- 4. Loker Penyimpanan: ruang loker gym bersih dan teratur --}}
                 <div class="facility-card">
-                    <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=800&q=80" alt="Area Cardio" loading="lazy">
-                    <div class="facility-card-overlay"></div>
-                    <div class="facility-card-name noto-sans-facility-desc">Area Cardio</div>
-                </div>
-                <div class="facility-card">
-                    <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80" alt="Loker Penyimpanan" loading="lazy">
+                    <img src="https://images.pexels.com/photos/4162550/pexels-photo-4162550.jpeg?w=800&q=80" alt="Loker Penyimpanan" loading="lazy">
                     <div class="facility-card-overlay"></div>
                     <div class="facility-card-name noto-sans-facility-desc">Loker Penyimpanan</div>
                 </div>
+
+                {{-- 5. Parkir Luas: area parkir luas di depan gedung --}}
                 <div class="facility-card">
-                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Parkir Luas" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1506521781263-d8422e82f27a?w=800&q=80" alt="Parkir Luas" loading="lazy">
                     <div class="facility-card-overlay"></div>
                     <div class="facility-card-name noto-sans-facility-desc">Parkir Luas</div>
                 </div>
-                <div class="facility-card">
-                    <img src="https://images.unsplash.com/photo-1576678927484-cc907957088c?w=800&q=80" alt="Ruang Latihan Nyaman" loading="lazy">
-                    <div class="facility-card-overlay"></div>
-                    <div class="facility-card-name noto-sans-facility-desc">Ruang Latihan Nyaman</div>
-                </div>
+
             </div>
         </div>
         <div class="facility-dots" id="facilityDots"></div>

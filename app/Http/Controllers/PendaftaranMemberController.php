@@ -29,10 +29,6 @@ class PendaftaranMemberController extends Controller
                 'required',
                 'email',
                 'max:255',
-                Rule::when(
-                    $request->user() !== null,
-                    Rule::in([$request->user()?->email])
-                ),
                 Rule::unique('tb_member', 'email'),
                 Rule::unique('tb_pendaftaran', 'email')
                     ->where(fn ($query) => $query->where('status_pendaftaran', 'pending')),
@@ -48,7 +44,6 @@ class PendaftaranMemberController extends Controller
             'no_hp.regex' => 'Nomor HP harus berisi 10 sampai 15 angka.',
             'email.required' => 'Email wajib diisi.',
             'email.email' => 'Format email tidak valid.',
-            'email.in' => 'Gunakan email yang sama dengan akun Anda agar profil member dapat terhubung.',
             'email.unique' => 'Email ini sudah menjadi member atau masih memiliki pendaftaran pending.',
             'alamat.required' => 'Alamat wajib diisi.',
             'paket_id.required' => 'Paket membership wajib dipilih.',

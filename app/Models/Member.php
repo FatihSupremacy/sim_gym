@@ -56,4 +56,29 @@ class Member extends Model
     {
         return $this->hasMany(Absen::class, 'member_id');
     }
+
+    /**
+     * Relasi ke tabel jembatan tb_user_member.
+     */
+    public function userMember()
+    {
+        return $this->hasOne(UserMember::class, 'member_id');
+    }
+
+    /**
+     * Akses langsung ke akun user melalui tb_user_member.
+     * Jika null → member ini daftarnya offline (tanpa akun).
+     * Contoh: $member->user?->email
+     */
+    public function user()
+    {
+        return $this->hasOneThrough(
+            User::class,
+            UserMember::class,
+            'member_id', // FK di tb_user_member → tb_member
+            'id',        // PK di users
+            'id',        // PK di tb_member
+            'user_id'    // FK di tb_user_member → users
+        );
+    }
 }

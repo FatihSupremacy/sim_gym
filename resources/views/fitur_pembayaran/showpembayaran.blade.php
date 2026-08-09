@@ -274,7 +274,6 @@
                         @empty
                         <tr>
                             <td colspan="6" class="text-center py-5 text-secondary">
-                                <i class="bi bi-receipt-cutoff mb-2 d-block mx-auto opacity-50" style="font-size:40px;" aria-hidden="true"></i>
                                 <p class="mb-0" style="font-size:14px;">Data pembayaran belum tersedia</p>
                             </td>
                         </tr>

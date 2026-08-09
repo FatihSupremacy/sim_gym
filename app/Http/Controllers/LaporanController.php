@@ -30,17 +30,14 @@ class LaporanController extends Controller
     // ========================
     public function create()
     {
-        $today = today();
+        // Buat instance Laporan sementara dengan tanggal hari ini
+        // agar bisa menggunakan method relasi dari model
+        $laporan = new Laporan(['tanggal' => today()->toDateString()]);
 
-        $total = Absen::whereDate('checkin_time', $today)->count();
-
-        $bulanan = Absen::whereDate('checkin_time', $today)
-            ->where('tipe', 'bulanan')->count();
-
-        $harian = Absen::whereDate('checkin_time', $today)
-            ->where('tipe', 'harian')->count();
-
-        $memberBaru = Member::whereDate('tanggal_daftar', $today)->count();
+        $total      = $laporan->totalAbsen();
+        $bulanan    = $laporan->totalAbsenBulanan();
+        $harian     = $laporan->totalAbsenHarian();
+        $memberBaru = $laporan->totalMemberBaru();
 
         return view('fitur_laporan_harian.addlaporan', compact(
             'total',
@@ -62,16 +59,17 @@ class LaporanController extends Controller
         }
 
         Laporan::create([
-            'tanggal' => today(),
+            'user_id'         => auth()->id(),
+            'tanggal'         => today(),
             'jam_operasional' => $request->jam_operasional,
-            'petugas' => $request->petugas,
-            'pendapatan' => $request->pendapatan,
-            'penjualan_produk' => $request->penjualan_produk,
-            'kondisi_alat' => $request->kondisi_alat,
-            'operasional' => $request->operasional,
-            'keluhan' => $request->keluhan,
-            'insiden' => $request->insiden,
-            'tindak_lanjut' => $request->tindak_lanjut,
+            'petugas'         => $request->petugas,
+            'pendapatan'      => $request->pendapatan,
+            'penjualan_produk'=> $request->penjualan_produk,
+            'kondisi_alat'    => $request->kondisi_alat,
+            'operasional'     => $request->operasional,
+            'keluhan'         => $request->keluhan,
+            'insiden'         => $request->insiden,
+            'tindak_lanjut'   => $request->tindak_lanjut,
         ]);
 
         return redirect()->route('laporan.index')
@@ -84,17 +82,12 @@ class LaporanController extends Controller
     public function show($id)
     {
         $laporan = Laporan::findOrFail($id);
-        $tanggal = $laporan->tanggal;
 
-        $total = Absen::whereDate('checkin_time', $tanggal)->count();
-
-        $bulanan = Absen::whereDate('checkin_time', $tanggal)
-            ->where('tipe', 'bulanan')->count();
-
-        $harian = Absen::whereDate('checkin_time', $tanggal)
-            ->where('tipe', 'harian')->count();
-
-        $memberBaru = Member::whereDate('tanggal_daftar', $tanggal)->count();
+        // Gunakan method relasi dari model Laporan
+        $total      = $laporan->totalAbsen();
+        $bulanan    = $laporan->totalAbsenBulanan();
+        $harian     = $laporan->totalAbsenHarian();
+        $memberBaru = $laporan->totalMemberBaru();
 
         return view('fitur_laporan_harian.detaillaporan', compact(
             'laporan',

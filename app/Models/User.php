@@ -48,4 +48,29 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Relasi ke tabel jembatan tb_user_member.
+     * Satu user hanya punya satu data member.
+     */
+    public function userMember()
+    {
+        return $this->hasOne(UserMember::class, 'user_id');
+    }
+
+    /**
+     * Akses langsung ke data member melalui tb_user_member.
+     * Contoh: $user->member->nama
+     */
+    public function member()
+    {
+        return $this->hasOneThrough(
+            Member::class,
+            UserMember::class,
+            'user_id',   // FK di tb_user_member → users
+            'id',        // FK di tb_member (primary key)
+            'id',        // PK di users
+            'member_id'  // FK di tb_user_member → tb_member
+        );
+    }
 }

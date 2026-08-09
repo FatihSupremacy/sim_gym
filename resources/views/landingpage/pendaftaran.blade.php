@@ -326,7 +326,7 @@
                             type="text"
                             id="namaLengkap"
                             name="nama"
-                            value="{{ old('nama', auth()->user()?->name) }}"
+                            value="{{ old('nama') }}"
                             class="form-control glass-input @error('nama') is-invalid @enderror"
                             placeholder="Masukkan nama lengkap"
                             required>
@@ -372,14 +372,10 @@
                             type="email"
                             id="email"
                             name="email"
-                            value="{{ old('email', auth()->user()?->email) }}"
+                            value="{{ old('email') }}"
                             class="form-control glass-input @error('email') is-invalid @enderror"
                             placeholder="Masukkan alamat email"
-                            {{ auth()->check() ? 'readonly' : '' }}
                             required>
-                        @auth
-                            <div class="form-text text-white-50">Email disamakan dengan akun agar data member muncul di profil Anda.</div>
-                        @endauth
                         @error('email')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
