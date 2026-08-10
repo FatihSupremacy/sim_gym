@@ -75,8 +75,8 @@
                 </div>
 
                 <div>
-                    <label for="kebersihan">Kebersihan</label>
-                    <textarea id="kebersihan" name="kebersihan" class="form-control">{{ old('kebersihan', $laporan->kebersihan) }}</textarea>
+                    <label for="operasional">Operasional</label>
+                    <textarea id="operasional" name="operasional" class="form-control">{{ old('operasional', $laporan->operasional) }}</textarea>
                 </div>
             </div>
         </div>

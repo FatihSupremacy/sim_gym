@@ -114,7 +114,19 @@ class LaporanController extends Controller
     {
         $laporan = Laporan::findOrFail($id);
 
-        $laporan->update($request->all());
+        $validated = $request->validate([
+            'jam_operasional'  => 'nullable|string|max:100',
+            'petugas'          => 'nullable|string|max:255',
+            'pendapatan'       => 'nullable|integer|min:0',
+            'penjualan_produk' => 'nullable|integer|min:0',
+            'kondisi_alat'     => 'nullable|string',
+            'operasional'      => 'nullable|string',
+            'keluhan'          => 'nullable|string',
+            'insiden'          => 'nullable|string',
+            'tindak_lanjut'    => 'nullable|string',
+        ]);
+
+        $laporan->update($validated);
 
         return redirect()->route('laporan.index')
             ->with('success', 'Laporan berhasil diupdate');

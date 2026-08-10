@@ -74,7 +74,7 @@ class VerificationController extends Controller
             'send_via' => 'email',
             'status' => 'active',
         ]);
-        Mail::to($user->email)->queue(new OtpMail($otp));
+        Mail::to($user->email)->send(new OtpMail($otp));
 
         return redirect('/verify/'.$verify->unique_id);
     }
